@@ -156,6 +156,7 @@ class System
         @rmdir($dir);
     }
 
+
     /**
      * 获得所有的 Cipher Methods
      * @return array
@@ -163,6 +164,39 @@ class System
     public static function getOpensslCipherMethods()
     {
         return openssl_get_cipher_methods();
+    }
+
+
+    /**
+     * 环境配置
+     * @param $key
+     * @param null $default
+     * @return array|bool|false|string|null
+     */
+    public static function env($key, $default = null)
+    {
+        $value = getenv($key);
+        if ($value === false) {
+            return $default;
+        }
+        switch (strtolower($value)) {
+            case 'true':
+            case '(true)':
+                return true;
+            case 'false':
+            case '(false)':
+                return false;
+            case 'empty':
+            case '(empty)':
+                return '';
+            case 'null':
+            case '(null)':
+                return null;
+        }
+        if (strlen($value) > 1 && Str::startsWith($value, '"') && Str::endsWith($value, '"')) {
+            return substr($value, 1, -1);
+        }
+        return $value;
     }
 
 }
