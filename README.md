@@ -37,4 +37,4 @@ foundation是一个公用的函数库，
  * Windows 对应windows系统的一些方法
 
 
- * ^ - ^ 部分方法来源于TP ZF2 laravel，感谢开源组织的贡献
+ * ^ - ^ 部分方法来源于TP ZF2 laravel，感谢开源社区的贡献
